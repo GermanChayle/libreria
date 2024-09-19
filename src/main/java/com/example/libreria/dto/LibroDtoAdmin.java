@@ -18,6 +18,6 @@ public class LibroDtoAdmin {
     private Integer ejemplaresPrestados;
     private Integer ejemplaresRestantes;
     private Boolean alta;
-    private Set<AutorDto> autores = new HashSet<>();;
+    private Set<AutorDto> autores = new HashSet<>();
     private EditorialDto editorial;
 }

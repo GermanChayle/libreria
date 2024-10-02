@@ -3,14 +3,13 @@ package com.example.libreria.model;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
-@Data
 @Entity
+@Getter
 @NoArgsConstructor
+@Setter
 
 public class Libro {
     @Id

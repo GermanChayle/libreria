@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 public interface LibroRepositorio extends JpaRepository<Libro, Long> {
-    List<Libro> findByAltaTrue();
-    List<Libro> findByAltaFalse();
-    List<Libro> findByAnioAndAltaTrue(Integer anio);
+    List<Libro> findAllByAltaTrue();
+    List<Libro> findAllByAltaFalse();
+    List<Libro> findAllByAnioAndAltaTrue(Integer anio);
     Optional<Libro> findByIsbn(Long isbn);
     Optional<Libro> findByIsbnAndAltaTrue(Long isbn);
     Optional<Libro> findByIsbnAndAltaFalse(Long isbn);

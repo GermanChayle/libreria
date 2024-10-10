@@ -147,7 +147,7 @@ public class AutorServicio implements AutorService {
         Autor autor = autorRepositorio.findByNombre(nombre).orElseThrow(AutorNoEncontradoException::new);
 
         if (!autor.getLibros().isEmpty()) {
-            throw new IllegalStateException("El autor no se puede eliminar porque está vinculado a uno o más libros");
+            throw new IllegalStateException("El autor no se puede eliminar está vinculado a uno o más libros");
         }
 
         autorRepositorio.delete(autor);

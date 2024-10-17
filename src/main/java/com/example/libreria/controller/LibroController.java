@@ -6,9 +6,14 @@ import com.example.libreria.exception.LibroEncontradoException;
 import com.example.libreria.exception.LibroNoEncontradoException;
 import com.example.libreria.service.LibroService;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/libros")
@@ -126,26 +131,56 @@ public class LibroController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<String> saveLibro(@RequestBody LibroDtoAdmin libroDtoAdmin) {
+    public ResponseEntity<?> saveLibro(@Valid @RequestBody LibroDtoAdmin libroDtoAdmin, BindingResult result) {
+        if (result.hasErrors()) {
+            Map<String, String> errors = result.getFieldErrors().stream().collect(Collectors.toMap(
+                                                                                 FieldError::getField,
+                                                                                 FieldError::getDefaultMessage
+                                                                         ));
+
+            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        }
+
         try {
             String mensaje = libroService.saveLibro(libroDtoAdmin);
 
             return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
         } catch (LibroEncontradoException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al guardar libro", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> updateLibro(@RequestBody LibroDtoAdmin libroDtoAdmin) {
+    public ResponseEntity<?> updateLibro(@Valid @RequestBody LibroDtoAdmin libroDtoAdmin, BindingResult result) {
+        Map<String, String> errors = result.getFieldErrors()
+                                           .stream()
+                                           .filter(error -> error.getField().equals("isbn") ||
+                                                            error.getField().equals("titulo") ||
+                                                            error.getField().equals("anio") ||
+                                                            error.getField().equals("ejemplares") ||
+                                                            error.getField().equals("ejemplaresPrestados") ||
+                                                            error.getField().equals("ejemplaresRestantes"))
+                                           .collect(Collectors.toMap(
+                                                   FieldError::getField,
+                                                   FieldError::getDefaultMessage
+                                           ));
+
+        if (!errors.isEmpty()) {
+            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        }
+
         try {
             String mensaje = libroService.updateLibro(libroDtoAdmin);
 
             return new ResponseEntity<>(mensaje, HttpStatus.OK);
         } catch (LibroNoEncontradoException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al actualizar libro", HttpStatus.INTERNAL_SERVER_ERROR);
         }

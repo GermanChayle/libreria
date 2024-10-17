@@ -91,6 +91,8 @@ public class LibroServicio implements LibroService {
             throw new LibroEncontradoException();
         }
 
+        validateLibroDtoAdminEjemplares(libroDtoAdmin);
+
         Libro newLibro = MapperLibro.toEntity(libroDtoAdmin);
         Set<Autor> autores = new HashSet<>();
 
@@ -132,6 +134,8 @@ public class LibroServicio implements LibroService {
     @Override
     public String updateLibro(LibroDtoAdmin libroDtoAdmin) {
         Libro libro = libroRepositorio.findByIsbn(libroDtoAdmin.getIsbn()).orElseThrow(LibroNoEncontradoException::new);
+
+        validateLibroDtoAdminEjemplares(libroDtoAdmin);
 
         libro.setTitulo(libroDtoAdmin.getTitulo());
         libro.setAnio(libroDtoAdmin.getAnio());
@@ -236,5 +240,23 @@ public class LibroServicio implements LibroService {
         }
 
         return "Libro eliminado exitosamente";
+    }
+
+    private void validateLibroDtoAdminEjemplares(LibroDtoAdmin libroDtoAdmin) {
+        if (libroDtoAdmin.getEjemplaresPrestados() > libroDtoAdmin.getEjemplares()) {
+            throw new IllegalArgumentException("Ejemplares prestados no puede ser mayor a ejemplares");
+        }
+
+        if (libroDtoAdmin.getEjemplaresRestantes() > libroDtoAdmin.getEjemplares()) {
+            throw new IllegalArgumentException("Ejemplares restantes no puede ser mayor a ejemplares");
+        }
+
+        int sumEjemplares = libroDtoAdmin.getEjemplaresPrestados() + libroDtoAdmin.getEjemplaresRestantes();
+
+        if (sumEjemplares != libroDtoAdmin.getEjemplares()) {
+            String mensaje = "La suma de ejemplares prestados y ejemplares restantes debe ser igual a los ejemplares";
+
+            throw new IllegalArgumentException(mensaje);
+        }
     }
 }

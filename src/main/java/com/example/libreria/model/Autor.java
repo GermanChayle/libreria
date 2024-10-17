@@ -16,8 +16,11 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombre;
+
     private Boolean alta;
+
     @ManyToMany(mappedBy = "autores")
     private Set<Libro> libros = new HashSet<>();
 }

@@ -16,8 +16,11 @@ public class Editorial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombre;
+
     private Boolean alta;
+
     @OneToMany(mappedBy = "editorial")
     private Set<Libro> libros = new HashSet<>();
 }

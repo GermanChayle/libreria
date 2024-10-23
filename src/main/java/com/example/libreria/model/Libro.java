@@ -7,6 +7,7 @@ import lombok.*;
 
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode
 @Getter
 @NoArgsConstructor
 @Setter

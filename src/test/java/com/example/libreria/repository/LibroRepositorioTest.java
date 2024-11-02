@@ -94,30 +94,30 @@ class LibroRepositorioTest {
 
     @Test
     void findAllByAltaTrueTest() {
-        List<Libro> libros = libroRepositorio.findAllByAltaTrue();
+        List<Libro> listaLibros = libroRepositorio.findAllByAltaTrue();
 
-        assertNotNull(libros);
-        assertFalse(libros.isEmpty());
-        assertTrue(libros.stream().allMatch(Libro::getAlta));
+        assertNotNull(listaLibros);
+        assertFalse(listaLibros.isEmpty());
+        assertTrue(listaLibros.stream().allMatch(Libro::getAlta));
     }
 
     @Test
     void findAllByAltaFalseTest() {
-        List<Libro> libros = libroRepositorio.findAllByAltaFalse();
+        List<Libro> listaLibros = libroRepositorio.findAllByAltaFalse();
 
-        assertNotNull(libros);
-        assertFalse(libros.isEmpty());
-        assertTrue(libros.stream().noneMatch(Libro::getAlta));
+        assertNotNull(listaLibros);
+        assertFalse(listaLibros.isEmpty());
+        assertTrue(listaLibros.stream().noneMatch(Libro::getAlta));
     }
 
     @Test
     void findAllByAnioAndAltaTrueTest() {
         int anio = 2000;
-        List<Libro> libros = libroRepositorio.findAllByAnioAndAltaTrue(anio);
+        List<Libro> listaLibros = libroRepositorio.findAllByAnioAndAltaTrue(anio);
 
-        assertNotNull(libros);
-        assertFalse(libros.isEmpty());
-        assertTrue(libros.stream().allMatch(libro -> libro.getAnio() == anio && libro.getAlta()));
+        assertNotNull(listaLibros);
+        assertFalse(listaLibros.isEmpty());
+        assertTrue(listaLibros.stream().allMatch(libro -> libro.getAnio() == anio && libro.getAlta()));
     }
 
     @Test

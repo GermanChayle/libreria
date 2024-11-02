@@ -33,20 +33,20 @@ class EditorialRepositorioTest {
 
     @Test
     void findAllByAltaTrueTest() {
-        List<Editorial> editoriales = editorialRepositorio.findAllByAltaTrue();
+        List<Editorial> listaEditoriales = editorialRepositorio.findAllByAltaTrue();
 
-        assertNotNull(editoriales);
-        assertFalse(editoriales.isEmpty());
-        assertTrue(editoriales.stream().allMatch(Editorial::getAlta));
+        assertNotNull(listaEditoriales);
+        assertFalse(listaEditoriales.isEmpty());
+        assertTrue(listaEditoriales.stream().allMatch(Editorial::getAlta));
     }
 
     @Test
     void findAllByAltaFalseTest() {
-        List<Editorial> editoriales = editorialRepositorio.findAllByAltaFalse();
+        List<Editorial> listaEditoriales = editorialRepositorio.findAllByAltaFalse();
 
-        assertNotNull(editoriales);
-        assertFalse(editoriales.isEmpty());
-        assertTrue(editoriales.stream().noneMatch(Editorial::getAlta));
+        assertNotNull(listaEditoriales);
+        assertFalse(listaEditoriales.isEmpty());
+        assertTrue(listaEditoriales.stream().noneMatch(Editorial::getAlta));
     }
 
     @Test

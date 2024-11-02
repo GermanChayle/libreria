@@ -33,20 +33,20 @@ class AutorRepositorioTest {
 
     @Test
     void findAllByAltaTrueTest() {
-        List<Autor> autores = autorRepositorio.findAllByAltaTrue();
+        List<Autor> listaAutores = autorRepositorio.findAllByAltaTrue();
 
-        assertNotNull(autores);
-        assertFalse(autores.isEmpty());
-        assertTrue(autores.stream().allMatch(Autor::getAlta));
+        assertNotNull(listaAutores);
+        assertFalse(listaAutores.isEmpty());
+        assertTrue(listaAutores.stream().allMatch(Autor::getAlta));
     }
 
     @Test
     void findAllByAltaFalseTest() {
-        List<Autor> autores = autorRepositorio.findAllByAltaFalse();
+        List<Autor> listaAutores = autorRepositorio.findAllByAltaFalse();
 
-        assertNotNull(autores);
-        assertFalse(autores.isEmpty());
-        assertTrue(autores.stream().noneMatch(Autor::getAlta));
+        assertNotNull(listaAutores);
+        assertFalse(listaAutores.isEmpty());
+        assertTrue(listaAutores.stream().noneMatch(Autor::getAlta));
     }
 
     @Test

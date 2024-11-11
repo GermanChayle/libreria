@@ -60,6 +60,7 @@ class LibroServicioTest {
 
         libro = new Libro();
 
+        libro.setId(1L);
         libro.setIsbn(1234567890123L);
         libro.setTitulo("Título libro");
         libro.setAnio(2000);
@@ -302,7 +303,9 @@ class LibroServicioTest {
     void deleteLibroTest() {
         when(libroRepositorio.findByIsbn(libro.getIsbn())).thenReturn(Optional.of(libro));
         doNothing().when(libroRepositorio).delete(libro);
+        when(libroRepositorio.existsByAutoresAndAltaTrue(autor)).thenReturn(false);
         doNothing().when(autorRepositorio).delete(autor);
+        when(libroRepositorio.existsByEditorialAndAltaTrue(editorial)).thenReturn(false);
         doNothing().when(editorialRepositorio).delete(editorial);
 
         String mensaje = libroServicio.deleteLibro(libro.getIsbn());
@@ -311,7 +314,9 @@ class LibroServicioTest {
 
         verify(libroRepositorio, times(1)).findByIsbn(libro.getIsbn());
         verify(libroRepositorio, times(1)).delete(libro);
+        verify(libroRepositorio, times(1)).existsByAutoresAndAltaTrue(autor);
         verify(autorRepositorio, times(1)).delete(autor);
+        verify(libroRepositorio, times(1)).existsByEditorialAndAltaTrue(editorial);
         verify(editorialRepositorio, times(1)).delete(editorial);
     }
 }

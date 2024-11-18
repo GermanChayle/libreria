@@ -230,12 +230,12 @@ public class LibroServicio implements LibroService {
         libroRepositorio.delete(libro);
 
         for (Autor autor : libro.getAutores()) {
-            if (!libroRepositorio.existsByAutoresAndAltaTrue(autor)) {
+            if (!libroRepositorio.existsByAutores(autor)) {
                 autorRepositorio.delete(autor);
             }
         }
 
-        if (!libroRepositorio.existsByEditorialAndAltaTrue(libro.getEditorial())) {
+        if (!libroRepositorio.existsByEditorial(libro.getEditorial())) {
             editorialRepositorio.delete(libro.getEditorial());
         }
 

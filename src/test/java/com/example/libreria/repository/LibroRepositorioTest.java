@@ -60,32 +60,32 @@ class LibroRepositorioTest {
         Libro libro2 = new Libro();
         Libro libro3 = new Libro();
 
-        libro1.setIsbn(1234567890123L);
+        libro1.setIsbn(9789871234560L);
         libro1.setTitulo("Título libro 1");
         libro1.setAnio(2000);
-        libro1.setEjemplares(10);
-        libro1.setEjemplaresPrestados(5);
-        libro1.setEjemplaresRestantes(5);
+        libro1.setEjemplares(20);
+        libro1.setEjemplaresPrestados(10);
+        libro1.setEjemplaresRestantes(10);
         libro1.setAlta(true);
         libro1.setAutores(autores1);
         libro1.setEditorial(editorial1);
         libroRepositorio.save(libro1);
-        libro2.setIsbn(2345678901234L);
+        libro2.setIsbn(9789871234561L);
         libro2.setTitulo("Título libro 2");
         libro2.setAnio(2000);
-        libro2.setEjemplares(20);
-        libro2.setEjemplaresPrestados(10);
-        libro2.setEjemplaresRestantes(10);
+        libro2.setEjemplares(40);
+        libro2.setEjemplaresPrestados(20);
+        libro2.setEjemplaresRestantes(20);
         libro2.setAlta(true);
         libro2.setAutores(autores1);
         libro2.setEditorial(editorial1);
         libroRepositorio.save(libro2);
-        libro3.setIsbn(3456789012345L);
+        libro3.setIsbn(9789871234562L);
         libro3.setTitulo("Título libro 3");
         libro3.setAnio(2001);
-        libro3.setEjemplares(10);
-        libro3.setEjemplaresPrestados(5);
-        libro3.setEjemplaresRestantes(5);
+        libro3.setEjemplares(60);
+        libro3.setEjemplaresPrestados(30);
+        libro3.setEjemplaresRestantes(30);
         libro3.setAlta(false);
         libro3.setAutores(autores2);
         libro3.setEditorial(editorial2);
@@ -122,7 +122,7 @@ class LibroRepositorioTest {
 
     @Test
     void findByIsbnTest() {
-        long isbn = 1234567890123L;
+        long isbn = 9789871234560L;
         Optional<Libro> libro = libroRepositorio.findByIsbn(isbn);
 
         assertTrue(libro.isPresent());
@@ -131,7 +131,7 @@ class LibroRepositorioTest {
 
     @Test
     void findByIsbnAndAltaTrueTest() {
-        long isbn = 1234567890123L;
+        long isbn = 9789871234560L;
         Optional<Libro> libro = libroRepositorio.findByIsbnAndAltaTrue(isbn);
 
         assertTrue(libro.isPresent());
@@ -141,7 +141,7 @@ class LibroRepositorioTest {
 
     @Test
     void findByIsbnAndAltaFalseTest() {
-        long isbn = 3456789012345L;
+        long isbn = 9789871234562L;
         Optional<Libro> libro = libroRepositorio.findByIsbnAndAltaFalse(isbn);
 
         assertTrue(libro.isPresent());
@@ -166,6 +166,22 @@ class LibroRepositorioTest {
         assertTrue(libro.isPresent());
         assertEquals(titulo, libro.get().getTitulo());
         assertTrue(libro.get().getAlta());
+    }
+
+    @Test
+    void existsByAutoresTest() {
+        Optional<Autor> autor = autorRepositorio.findByNombre("Nombre autor 2");
+
+        assertTrue(autor.isPresent());
+        assertTrue(libroRepositorio.existsByAutores(autor.get()));
+    }
+
+    @Test
+    void existsByEditorialTest() {
+        Optional<Editorial> editorial = editorialRepositorio.findByNombre("Nombre editorial 2");
+
+        assertTrue(editorial.isPresent());
+        assertTrue(libroRepositorio.existsByEditorial(editorial.get()));
     }
 
     @Test

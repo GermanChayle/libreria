@@ -1,16 +1,17 @@
 package com.example.libreria.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
-@Data
 @Entity
+@EqualsAndHashCode
+@Getter
 @NoArgsConstructor
+@Setter
 
 public class Editorial {
     @Id
@@ -22,5 +23,6 @@ public class Editorial {
     private Boolean alta;
 
     @OneToMany(mappedBy = "editorial")
+    @JsonIgnoreProperties("editorial")
     private Set<Libro> libros = new HashSet<>();
 }

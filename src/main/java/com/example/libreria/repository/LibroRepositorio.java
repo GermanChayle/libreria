@@ -19,6 +19,8 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long> {
     Optional<Libro> findByIsbnAndAltaFalse(Long isbn);
     Optional<Libro> findByTitulo(String titulo);
     Optional<Libro> findByTituloAndAltaTrue(String titulo);
+    boolean existsByAutores(Autor autor);
+    boolean existsByEditorial(Editorial editorial);
     boolean existsByAutoresAndAltaTrue(Autor autor);
     boolean existsByEditorialAndAltaTrue(Editorial editorial);
 }

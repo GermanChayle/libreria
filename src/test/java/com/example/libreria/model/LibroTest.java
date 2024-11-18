@@ -31,12 +31,12 @@ class LibroTest {
         libro = new Libro();
 
         libro.setId(1L);
-        libro.setIsbn(1234567890123L);
+        libro.setIsbn(9789871234560L);
         libro.setTitulo("Título libro");
         libro.setAnio(2000);
-        libro.setEjemplares(10);
-        libro.setEjemplaresPrestados(5);
-        libro.setEjemplaresRestantes(5);
+        libro.setEjemplares(20);
+        libro.setEjemplaresPrestados(10);
+        libro.setEjemplaresRestantes(10);
         libro.setAlta(true);
         libro.setAutores(autores);
         libro.setEditorial(editorial);
@@ -49,7 +49,7 @@ class LibroTest {
 
     @Test
     void getIsbnTest() {
-        assertEquals(1234567890123L, libro.getIsbn());
+        assertEquals(9789871234560L, libro.getIsbn());
     }
 
     @Test
@@ -64,17 +64,17 @@ class LibroTest {
 
     @Test
     void getEjemplaresTest() {
-        assertEquals(10, libro.getEjemplares());
+        assertEquals(20, libro.getEjemplares());
     }
 
     @Test
     void getEjemplaresPrestadosTest() {
-        assertEquals(5, libro.getEjemplaresPrestados());
+        assertEquals(10, libro.getEjemplaresPrestados());
     }
 
     @Test
     void getEjemplaresRestantesTest() {
-        assertEquals(5, libro.getEjemplaresRestantes());
+        assertEquals(10, libro.getEjemplaresRestantes());
     }
 
     @Test
@@ -117,9 +117,9 @@ class LibroTest {
 
     @Test
     void setIsbnTest() {
-        libro.setIsbn(3210987654321L);
+        libro.setIsbn(9789871234561L);
 
-        assertEquals(3210987654321L, libro.getIsbn());
+        assertEquals(9789871234561L, libro.getIsbn());
     }
 
     @Test
@@ -138,23 +138,23 @@ class LibroTest {
 
     @Test
     void setEjemplaresTest() {
-        libro.setEjemplares(20);
+        libro.setEjemplares(40);
 
-        assertEquals(20, libro.getEjemplares());
+        assertEquals(40, libro.getEjemplares());
     }
 
     @Test
     void setEjemplaresPrestadosTest() {
-        libro.setEjemplaresPrestados(10);
+        libro.setEjemplaresPrestados(20);
 
-        assertEquals(10, libro.getEjemplaresPrestados());
+        assertEquals(20, libro.getEjemplaresPrestados());
     }
 
     @Test
     void setEjemplaresRestantesTest() {
-        libro.setEjemplaresRestantes(10);
+        libro.setEjemplaresRestantes(20);
 
-        assertEquals(10, libro.getEjemplaresRestantes());
+        assertEquals(20, libro.getEjemplaresRestantes());
     }
 
     @Test
@@ -166,29 +166,29 @@ class LibroTest {
 
     @Test
     void setAutoresTest() {
-        Autor newAutor = new Autor();
+        Autor autor = new Autor();
 
-        newAutor.setId(2L);
-        newAutor.setNombre("Nuevo nombre autor");
-        newAutor.setAlta(false);
+        autor.setId(2L);
+        autor.setNombre("Nuevo nombre autor");
+        autor.setAlta(false);
 
-        Set<Autor> newAutores = new HashSet<>();
+        Set<Autor> autores = new HashSet<>();
 
-        newAutores.add(newAutor);
-        libro.setAutores(newAutores);
+        autores.add(autor);
+        libro.setAutores(autores);
 
-        assertEquals(newAutores, libro.getAutores());
+        assertEquals(autores, libro.getAutores());
     }
 
     @Test
     void setEditorialTest() {
-        Editorial newEditorial = new Editorial();
+        Editorial editorial = new Editorial();
 
-        newEditorial.setId(2L);
-        newEditorial.setNombre("Nuevo nombre editorial");
-        newEditorial.setAlta(false);
-        libro.setEditorial(newEditorial);
+        editorial.setId(2L);
+        editorial.setNombre("Nuevo nombre editorial");
+        editorial.setAlta(false);
+        libro.setEditorial(editorial);
 
-        assertEquals(newEditorial, libro.getEditorial());
+        assertEquals(editorial, libro.getEditorial());
     }
 }

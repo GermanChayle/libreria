@@ -12,11 +12,23 @@ class AutorTest {
 
     @BeforeEach
     void setUp() {
+        Editorial editorial = new Editorial();
+
+        editorial.setId(1L);
+        editorial.setNombre("Nombre editorial");
+        editorial.setAlta(true);
+
         Libro libro = new Libro();
 
         libro.setId(1L);
+        libro.setIsbn(9789871234560L);
         libro.setTitulo("Título libro");
+        libro.setAnio(2000);
+        libro.setEjemplares(20);
+        libro.setEjemplaresPrestados(10);
+        libro.setEjemplaresRestantes(10);
         libro.setAlta(true);
+        libro.setEditorial(editorial);
 
         Set<Libro> libros = new HashSet<>();
 
@@ -47,11 +59,23 @@ class AutorTest {
 
     @Test
     void getLibrosTest() {
+        Editorial editorial = new Editorial();
+
+        editorial.setId(1L);
+        editorial.setNombre("Nombre editorial");
+        editorial.setAlta(true);
+
         Libro libro = new Libro();
 
         libro.setId(1L);
+        libro.setIsbn(9789871234560L);
         libro.setTitulo("Título libro");
+        libro.setAnio(2000);
+        libro.setEjemplares(20);
+        libro.setEjemplaresPrestados(10);
+        libro.setEjemplaresRestantes(10);
         libro.setAlta(true);
+        libro.setEditorial(editorial);
 
         Set<Libro> libros = new HashSet<>();
 
@@ -83,17 +107,29 @@ class AutorTest {
 
     @Test
     void setLibrosTest() {
-        Libro newLibro = new Libro();
+        Editorial editorial = new Editorial();
 
-        newLibro.setId(2L);
-        newLibro.setTitulo("Nuevo título libro");
-        newLibro.setAlta(false);
+        editorial.setId(2L);
+        editorial.setNombre("Nuevo nombre editorial");
+        editorial.setAlta(false);
 
-        Set<Libro> newLibros = new HashSet<>();
+        Libro libro = new Libro();
 
-        newLibros.add(newLibro);
-        autor.setLibros(newLibros);
+        libro.setId(2L);
+        libro.setIsbn(9789871234561L);
+        libro.setTitulo("Nuevo título libro");
+        libro.setAnio(2001);
+        libro.setEjemplares(40);
+        libro.setEjemplaresPrestados(20);
+        libro.setEjemplaresRestantes(20);
+        libro.setAlta(false);
+        libro.setEditorial(editorial);
 
-        assertEquals(newLibros, autor.getLibros());
+        Set<Libro> libros = new HashSet<>();
+
+        libros.add(libro);
+        autor.setLibros(libros);
+
+        assertEquals(libros, autor.getLibros());
     }
 }

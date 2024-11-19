@@ -62,7 +62,12 @@ class AutorServicioTest {
         libro = new Libro();
 
         libro.setId(1L);
+        libro.setIsbn(9789871234560L);
         libro.setTitulo("Título libro");
+        libro.setAnio(2000);
+        libro.setEjemplares(20);
+        libro.setEjemplaresPrestados(10);
+        libro.setEjemplaresRestantes(10);
         libro.setAlta(true);
         libro.setAutores(autores);
         libro.setEditorial(editorial);

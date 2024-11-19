@@ -60,12 +60,12 @@ class LibroControllerTest {
         libro = new Libro();
 
         libro.setId(1L);
-        libro.setIsbn(1234567890123L);
+        libro.setIsbn(9789871234560L);
         libro.setTitulo("Título libro");
         libro.setAnio(2000);
-        libro.setEjemplares(10);
-        libro.setEjemplaresPrestados(5);
-        libro.setEjemplaresRestantes(5);
+        libro.setEjemplares(20);
+        libro.setEjemplaresPrestados(10);
+        libro.setEjemplaresRestantes(10);
         libro.setAlta(true);
         libro.setAutores(autores);
         libro.setEditorial(editorial);
@@ -220,12 +220,12 @@ class LibroControllerTest {
     void updateLibroTest() throws Exception {
         LibroDtoAdmin newLibroDtoAdmin = new LibroDtoAdmin();
 
-        newLibroDtoAdmin.setIsbn(1234567890123L);
+        newLibroDtoAdmin.setIsbn(9789871234561L);
         newLibroDtoAdmin.setTitulo("Nuevo título libro");
         newLibroDtoAdmin.setAnio(2001);
-        newLibroDtoAdmin.setEjemplares(20);
-        newLibroDtoAdmin.setEjemplaresPrestados(10);
-        newLibroDtoAdmin.setEjemplaresRestantes(10);
+        newLibroDtoAdmin.setEjemplares(40);
+        newLibroDtoAdmin.setEjemplaresPrestados(20);
+        newLibroDtoAdmin.setEjemplaresRestantes(20);
 
         String mensaje = "Libro actualizado exitosamente";
 

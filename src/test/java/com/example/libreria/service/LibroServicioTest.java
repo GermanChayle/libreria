@@ -61,12 +61,12 @@ class LibroServicioTest {
         libro = new Libro();
 
         libro.setId(1L);
-        libro.setIsbn(1234567890123L);
+        libro.setIsbn(9789871234560L);
         libro.setTitulo("Título libro");
         libro.setAnio(2000);
-        libro.setEjemplares(10);
-        libro.setEjemplaresPrestados(5);
-        libro.setEjemplaresRestantes(5);
+        libro.setEjemplares(20);
+        libro.setEjemplaresPrestados(10);
+        libro.setEjemplaresRestantes(10);
         libro.setAlta(true);
         libro.setAutores(autores);
         libro.setEditorial(editorial);
@@ -216,9 +216,9 @@ class LibroServicioTest {
 
         libroDtoAdmin.setTitulo("Nuevo título libro");
         libroDtoAdmin.setAnio(2001);
-        libroDtoAdmin.setEjemplares(20);
-        libroDtoAdmin.setEjemplaresPrestados(10);
-        libroDtoAdmin.setEjemplaresRestantes(10);
+        libroDtoAdmin.setEjemplares(40);
+        libroDtoAdmin.setEjemplaresPrestados(20);
+        libroDtoAdmin.setEjemplaresRestantes(20);
 
         when(libroRepositorio.findByIsbn(libroDtoAdmin.getIsbn())).thenReturn(Optional.of(libro));
         when(libroRepositorio.save(libro)).thenReturn(libro);
@@ -303,9 +303,9 @@ class LibroServicioTest {
     void deleteLibroTest() {
         when(libroRepositorio.findByIsbn(libro.getIsbn())).thenReturn(Optional.of(libro));
         doNothing().when(libroRepositorio).delete(libro);
-        when(libroRepositorio.existsByAutoresAndAltaTrue(autor)).thenReturn(false);
+        when(libroRepositorio.existsByAutores(autor)).thenReturn(false);
         doNothing().when(autorRepositorio).delete(autor);
-        when(libroRepositorio.existsByEditorialAndAltaTrue(editorial)).thenReturn(false);
+        when(libroRepositorio.existsByEditorial(editorial)).thenReturn(false);
         doNothing().when(editorialRepositorio).delete(editorial);
 
         String mensaje = libroServicio.deleteLibro(libro.getIsbn());
@@ -314,9 +314,9 @@ class LibroServicioTest {
 
         verify(libroRepositorio, times(1)).findByIsbn(libro.getIsbn());
         verify(libroRepositorio, times(1)).delete(libro);
-        verify(libroRepositorio, times(1)).existsByAutoresAndAltaTrue(autor);
+        verify(libroRepositorio, times(1)).existsByAutores(autor);
         verify(autorRepositorio, times(1)).delete(autor);
-        verify(libroRepositorio, times(1)).existsByEditorialAndAltaTrue(editorial);
+        verify(libroRepositorio, times(1)).existsByEditorial(editorial);
         verify(editorialRepositorio, times(1)).delete(editorial);
     }
 }

@@ -55,6 +55,12 @@ Representa las editoriales de los libros, con los siguientes atributos:
 - **Service**: Lógica de negocio y operaciones CRUD para cada entidad (`LibroServicio`, `AutorServicio`, `EditorialServicio`).
 - **Controller**: Controladores que manejan las peticiones y operaciones para cada entidad (`LibroController`, `AutorController`, `EditorialController`).
 
+## Estructura de la Base de Datos
+
+La siguiente imagen ilustra el diseño de la base de datos utilizado en el proyecto, incluyendo las relaciones entre las tablas principales (`libro`, `autor`, `editorial`) y la tabla intermedia `libro_autor` para manejar la relación de muchos a muchos entre libros y autores:
+
+![Estructura de la base de datos](assets/estructura-base-de-datos.png)
+
 ## Funcionalidades Principales
 
 1. **Gestión de Libros**:
@@ -94,12 +100,12 @@ A continuación, se muestran ejemplos de los JSON esperados en las solicitudes p
 ### `saveLibro`
 ```json
 {
-    "isbn": 9876543210123,
+    "isbn": 9789871234560,
     "titulo": "Libro",
     "anio": 2000,
-    "ejemplares": 100,
+    "ejemplares": 20,
     "ejemplaresPrestados": 0,
-    "ejemplaresRestantes": 100,
+    "ejemplaresRestantes": 20,
     "alta": true,
     "autores": [
         {
@@ -117,12 +123,12 @@ A continuación, se muestran ejemplos de los JSON esperados en las solicitudes p
 ### `updateLibro`
 ```json
 {
-    "isbn": 9876543210123,
+    "isbn": 9789871234560,
     "titulo": "Libro",
     "anio": 2000,
-    "ejemplares": 100,
+    "ejemplares": 20,
     "ejemplaresPrestados": 0,
-    "ejemplaresRestantes": 100
+    "ejemplaresRestantes": 20
 }
 ```
 

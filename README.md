@@ -59,7 +59,9 @@ Representa las editoriales de los libros, con los siguientes atributos:
 
 La siguiente imagen ilustra el diseño de la base de datos utilizado en el proyecto, incluyendo las relaciones entre las tablas principales (`libro`, `autor`, `editorial`) y la tabla intermedia `libro_autor` para manejar la relación de muchos a muchos entre libros y autores:
 
-![Estructura de la base de datos](assets/estructura-base-de-datos.png)
+<p align="center">
+    <img src="assets/estructura-base-de-datos.png" alt="Estructura de la base de datos">
+</p>
 
 ## Funcionalidades Principales
 
